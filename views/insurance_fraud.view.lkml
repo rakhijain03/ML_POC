@@ -1,5 +1,5 @@
 view: insurance_fraud {
-  sql_table_name: `qp-q-looker-2020-04.ML_POC_Looker.InsuranceFraud`
+  sql_table_name: `qp-q-looker-2020-04.ML_POC_Looker.Fraud_Data`
     ;;
 
   dimension: age {
