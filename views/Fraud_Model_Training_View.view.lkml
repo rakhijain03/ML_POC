@@ -1,4 +1,28 @@
 view: fraud_model_training_view {
+ derived_table: {
+    ##datagroup_trigger: your_datagroup_name
+    sql_create:
+             CREATE OR REPLACE MODEL
+                  ${SQL_TABLE_NAME}
+             OPTIONS (
+                  model_type ='LOGISTIC_REG',
+                  labels =  ['fraud_reported'],
+                  , min_rel_progress = 0.005
+                  , max_iterations = 40
+
+              ) AS
+                  SELECT
+                     *FROM ${insurance_fraud.SQL_TABLE_NAME};;
+  }
+
+
+
+
+
+
+
+
+
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
