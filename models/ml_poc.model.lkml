@@ -4,10 +4,12 @@ connection: "gcp-bq-std-q-looker"
 include: "/views/**/*.view"
 
 datagroup: ml_poc_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 
 persist_with: ml_poc_default_datagroup
 
 explore: insurance_fraud {}
+explore: fraud_model_training_view {}
+explore: fraud_model_evaluation_view {}

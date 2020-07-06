@@ -1,4 +1,44 @@
 view: fraud_model_evaluation_view {
+  derived_table: {
+      sql:
+            SELECT
+              *
+            FROM ml.EVALUATE(
+              MODEL ${fraud_model_training_view.SQL_TABLE_NAME},
+              (SELECT
+                 *
+               FROM ${insurance_fraud.SQL_TABLE_NAME}));;
+    }
+
+    # dimension: mean_absolute_error {type: number}
+    # dimension: mean_squared_error {type: number}
+    # dimension: mean_squared_log_error {type: number}
+    # dimension: median_absolute_error {type: number}
+    # dimension: r2_score {type: number}
+    # dimension: explained_variance {type: number}
+
+    measure: recall {type:number}
+    measure: precision {type:number}
+    measure: accuracy {type:number}
+    measure: roc_auc {type:number}
+    measure: f1_score {type:number}
+    measure: log_loss {type:number}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
@@ -27,7 +67,7 @@ view: fraud_model_evaluation_view {
   #   type: sum
   #   sql: ${lifetime_orders} ;;
   # }
-}
+
 
 # view: fraud_model_evaluation_view {
 #   # Or, you could make this view a derived table, like this:
